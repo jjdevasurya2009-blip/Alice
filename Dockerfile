@@ -1,10 +1,8 @@
 FROM nikolaik/python-nodejs:python3.10-nodejs19
 
-# Update and install with a retry mechanism and cleaner cache handling
-RUN apt-get update && \
-    apt-get install -y --no-install-recommends ffmpeg && \
-    apt-get clean && \
-    rm -rf /var/lib/apt/lists/*
+
+RUN apt-get clean && apt-get update --fix-missing && apt-get install -y --no-install-recommends ffmpeg
+
 
 COPY . /app/
 WORKDIR /app/
